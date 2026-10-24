@@ -40,8 +40,5 @@ for pedido in pedidos:
     linhas = pedido_para_linhas_fato(pedido)
     todas_linhas.extend(linhas)
 
-print(f"Extraídos: {len(todas_linhas)} itens")
 
 carregar_linhas(todas_linhas)
-
-print("Carga concluída")
