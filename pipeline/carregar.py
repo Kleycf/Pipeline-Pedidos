@@ -1,9 +1,12 @@
+import os
 import sqlite3
+
+DB_PATH = os.environ.get("DB_PATH", "fato.db")
 
 
 def carregar_linhas(linhas):
 
-    conn = sqlite3.connect("fato.db")
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     cursor.execute(

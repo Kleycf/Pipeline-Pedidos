@@ -1,6 +1,10 @@
 import requests
+import os
+
 from transformar import pedido_para_linhas_fato
 from carregar import carregar_linhas
+
+URL_API = os.environ.get("URL_API", "http://127.0.0.1:8000")
 
 
 def extrair_pedidos():
@@ -11,7 +15,7 @@ def extrair_pedidos():
 
     while True:
         resposta = requests.get(
-            "http://127.0.0.1:8000/pedidos",
+            f"{URL_API}/pedidos",
             params={"pagina": pagina},
         )
 

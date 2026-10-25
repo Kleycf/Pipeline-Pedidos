@@ -1,0 +1,21 @@
+services:
+  api-pedidos:
+    build: ./API
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/pedidos')"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  pipeline:
+    build: ./pipeline
+    environment:
+      URL_API: http://api-pedidos:8000
+      DB_PATH: /dados/fato.db
+    volumes:
+      - ./dados:/dados
+    depends_on:
+      api-pedidos:
+        condition: service_healthy
