@@ -38,9 +38,13 @@ jobs:
         with:
           context: ./pipeline
           push: true
-          tags: ghcr.io/kleycf/pipeline-pedidos:latest
+          tags: |
+            ghcr.io/kleycf/pipeline-pedidos:latest
+            ghcr.io/kleycf/pipeline-pedidos:${{ github.sha }}
       - uses: docker/build-push-action@v6
         with:
           context: ./API
           push: true
-          tags: ghcr.io/kleycf/api-pedidos:latest
+          tags: |
+            ghcr.io/kleycf/api-pedidos:latest
+            ghcr.io/kleycf/api-pedidos:${{ github.sha }}
